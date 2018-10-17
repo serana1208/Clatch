@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'events/top'
   resources :infos
   resources :events
   #get 'home/top'
