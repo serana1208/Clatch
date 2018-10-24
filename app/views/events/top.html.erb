@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<h1><%= Date.today.mon %>月 <%= Date.today.day%>日の行事は...</h1>
+<li>
+<% @naiyou.each do |naiyou| %>
+<ul>
+    <h3><%= naiyou.content %>があります
+</ul>
+<%end%>
+<% if @naiyou.length == 0 %>
+<ul>
+    <h3>ありません
+</ul>
+<%end%>
+</li>
+
+<br><%= link_to '行事の追加等（教員限定）', events_path %>

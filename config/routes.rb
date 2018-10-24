@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :calendars
   get 'sessions/new'
 
   get 'events/top'

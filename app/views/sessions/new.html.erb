@@ -1,0 +1,16 @@
+<% provide(:title, "ログイン") %>
+<% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+<% end %>
+
+<h1>ログイン</h1>
+
+<%= form_for(:session, url: login_path) do |f| %>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+
+    <%= f.submit "ログインする", class: "btn btn-primary" %>
+<% end %>
+
+<br/>
+<%= link_to '戻る', session[:return_path] %>

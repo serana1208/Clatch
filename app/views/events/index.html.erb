@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<h1>行事一覧</h1>
+
+<table border="2">
+  <thead>
+    <tr>
+      <th>行事</th>
+      <th>日時</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.content %></td>
+        <td><%= event.eventday.strftime("%Y年 %m月 %d日") %></td>
+        <td><%= link_to '詳細', event %></td>
+        <td><%= link_to '編集', edit_event_path(event) %></td>
+        <td><%= link_to '削除', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<tfoot>
+    <tr><td colspan="2"></td></tr>
+</tfoot>
+
+<br>
+
+<%= link_to '行事追加', new_event_path %>
+
+<br><%= link_to '戻る', events_top_path %>
+
