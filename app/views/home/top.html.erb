@@ -1,7 +1,58 @@
 <div position: relative>
-  <img src="<%= asset_path 'home/1年.gif'%>"width="27%" height="39%" style="position:absolute; top:5px; left:70px"/>
-  <img src="<%= asset_path 'home/２年.gif'%>"width="27%" height="39%" style="position:absolute; top:190px; left:365px"/>
-  <img src="<%= asset_path 'home/３年.gif'%>"width="27%" height="39%" style="position:absolute; top:5px; left:720px"/>
-  <img src="<%= asset_path 'home/今日の運勢.gif'%>"width="27%" height="41%" style="position:absolute; top:435px; left:55px"/>
-  <img src="<%= asset_path 'home/年間カレンダー.png'%>"width="34%" height="53%" style="position:absolute; top:410px; left:683px"/>
-  </div>
+  <img src="<%= asset_path 'home/1年.gif'%>"alt="一年"width="27%" height="39%" style="position:absolute; top:5px; left:70px" usemap="#1stYear">
+    <map name="1stYear">
+      <area shape="rect" coords="90,130,180,200"   alt="" href="#">
+      <area shape="rect" coords="200,130,300,200"  alt="" href="#">
+      <area shape="rect" coords="80,210,160,250"  alt="" href="#">
+       <area shape="rect" coords="190,210,288,250"  alt="" href="#">
+    </map>
+  <img src="<%= asset_path 'home/２年.gif'%>"width="27%" height="39%" style="position:absolute; top:190px; left:365px"usemap="#2stYear">
+    <map name="2stYear">
+      <area shape="rect" coords="90,130,180,200"   alt="" href="#">
+      <area shape="rect" coords="200,130,300,200"  alt="" href="#">
+      <area shape="rect" coords="80,210,160,250"  alt="" href="#">
+      <area shape="rect" coords="190,210,288,250"  alt="" href="#">
+     </map>
+
+  <img src="<%= asset_path 'home/３年.gif'%>"width="27%" height="39%" style="position:absolute; top:5px; left:720px"usemap="#3stYear"> 
+     <map name="3stYear">
+      <area shape="rect" coords="90,130,180,200"   alt="" href="#">
+      <area shape="rect" coords="200,130,300,200"  alt="" href="#">
+      <area shape="rect" coords="80,210,160,250"  alt="" href="#">
+      <area shape="rect" coords="190,210,288,250"  alt="" href="#">
+    </map>
+  
+  <img src="<%= asset_path 'home/今日の運勢.gif'%>"width="27%" height="41%" style="position:absolute; top:435px; left:55px"usemap="#unsei">
+    <map name="unsei">
+      <area shape="circle" coords="180,130,120"   alt="" href="#">
+    </map>
+
+  <img src="<%= asset_path 'home/年間カレンダー.png'%>"width="34%" height="53%" style="position:absolute; top:410px; left:683px"usemap="#carenda">
+   <map name="carenda">
+     <area shape="rect" coords="60,100,350,290"   alt="" href="#">
+   </map>
+
+
+  <table width="15%" height="100%" style="position:absolute; top:0px; right:0px" border="0">
+      <tr>
+    <td colspan="2"align="center"valign="center"><img src="<%= GetDateImageFilename(Date.today, 1)%>"/></td>
+      </tr>
+    <tr>
+     <td colspan="2"align="center"valign="center"><font color="white" size="7">月</font></td>
+    </tr>
+    <tr>
+     <td colspan="2"align="center"valign="center"><img src="<%= GetDateImageFilename(Date.today, 2)%>"/></td>
+    </tr>
+    <tr>
+     <td colspan="2"align="center"valign="center"><font color="white" size="7">日</font></td>
+    </tr>
+    <tr>
+     <td colspan="2"align="center"valign="ceter"><img src="<%= GetDateImageFilename(Date.today, 3)%>"</td>
+    </tr>
+    <tr>
+    <td align="center"valign="ceter"><font color="white" size="7"> <a href="events/top"style="text-decoration: none; color: white;">行<br><br>事</a></font></td>
+     <td align="center"valign="ceter"><font color="white" size="7">時<br><br>間<br><br>割</font></td>
+    </tr>
+
+  </table>
+</div>
