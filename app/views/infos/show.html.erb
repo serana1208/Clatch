@@ -16,9 +16,21 @@
 </p>
 
 <p>
+  <strong>締め切りまでの残りの日数:</strong>
+  <%
+   @sa = (@info.limit - Date.today ).to_i 
+  %>
+  <% if @sa > -1 %>
+    <%= @sa %> 
+  <% end%>
+</p>
+
+
+<p>
   <strong>画像:</strong>
   <%= @info.filename %>
 </p>
 
-<%= link_to 'Edit', edit_info_path(@info) %> |
-<%= link_to 'Back', infos_path %>
+
+<%= link_to '戻る', infos_path %>
+<%= link_to '編集画面へ', edit_info_path(@info) %> 

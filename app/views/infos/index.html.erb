@@ -3,27 +3,36 @@
 <h1>インフォメーション</h1>
 
 <table border="2">
+  
   <thead>
     <tr>
+      <th></th>
       <th>タイトル</th>
       <th>締め切り</th>
       <th>締め切りまでの残りの日にち</th>
+      <%= link_to '追加画面へ', new_info_path %>
+      
     </tr>
   </thead>
 
   <tbody>
     <% @infos.each do |info| %>
       <tr>
-        <td><%= link_to info.title, info %></td>
-        <td><%= info.content %></td>
-        <td><%= info.limit %></td>
-        <td><%= link_to 'Edit', edit_info_path(info) %></td>
-        <td><%= link_to 'Destroy', info, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td width="8%"><img src="<%= asset_path 'info/new.png'%>"width="100%">
+          
+        </td>                    
+        <td width="15%"><%= link_to info.title, info %></td>
+        <td width="15%"><%= info.limit %></td>
+        <td>
+          <% if IsLimitNear(info.limit, 6) %>
+            <font color="red">
+          <% end %>
+          <%= GetRemainDays(info.limit) %>
+          <% if IsLimitNear(info.limit, 6) %>
+            </font>
+          <% end %>
+        </td>        
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to '追加画面へ', new_info_path %>
