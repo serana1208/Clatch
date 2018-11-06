@@ -4,12 +4,17 @@ class CalendarsController < ApplicationController
   # GET /calendars
   # GET /calendars.json
   def index
-    @calendars = Calendar.all
+    @calendars = Calendar.all #find_byで年度でさがしてないときは空にする
+    @nendo = Date.today.year
+    if Date.today.month < 4
+      @nendo = @nendo - 1
+    end
   end
 
   # GET /calendars/1
   # GET /calendars/1.json
   def show
+
   end
 
   # GET /calendars/new
