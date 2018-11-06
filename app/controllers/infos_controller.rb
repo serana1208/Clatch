@@ -1,15 +1,17 @@
 class InfosController < ApplicationController
   before_action :set_info, only: [:show, :edit, :update, :destroy]
 
+  
   # GET /infos
   # GET /infos.json
   def index
-    @infos = Info.all
+    @infos = Info.order("created_at desc")
   end
 
   # GET /infos/1
   # GET /infos/1.json
   def show
+    
   end
 
   # GET /infos/new
@@ -23,6 +25,8 @@ class InfosController < ApplicationController
 
   # POST /infos
   # POST /infos.json
+
+  
   def create
     @info = Info.new(info_params)
 
