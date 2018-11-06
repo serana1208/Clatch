@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'events/top'
   resources :infos
   resources :events
+  get 'classroom/top/:nen/:room' => 'classroom#top'
   #get 'home/top'
   get '/', to: 'home#top'
   get 'login' => 'sessions#new'

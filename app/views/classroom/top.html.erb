@@ -1,0 +1,19 @@
+<div position: relative>
+ <img  src="<%= asset_path 'public/kokuban.png'%>"width="100%"height="50%" style="position:absolute; top:5px; left:0px">
+ <img src="<%= asset_path 'home/class' + @nen + '.png'%>"width="40%"height="40%" style="position:absolute; top:50px; left:25px">
+ <img src="<%= asset_path 'home/年.png'%>"width="40%"height="40%" style="position:absolute; top:50px; left:245px">
+ <img src="<%= asset_path 'home/class'+ @room + '.png'%>"width="38%"height="40%" style="position:absolute; top:49px; right:285px">
+ <img src="<%= asset_path 'home/組.png'%>"width="40%"height="40%" style="position:absolute; top:49px; right:10px">
+
+
+ <img src="<%= asset_path 'home/インフォメーション.png'%>"width="40%"height="30%" style="position:absolute; top:400px; left:20px"usemap="#info">
+  <map name="#info">
+    <area shape="rect" coords="" alt""href="#">
+  </map>
+ <img src="<%= asset_path 'home/チャット.png'%>"width="40%"height="30%" style="position:absolute; top:400px; right:20px"usemap="#chat">
+   <map name="#chat">  
+     <area shape="rect" coords="" alt""href="#">
+   </map>
+   <h1><font color="white" size="7"> <p style="position:absolute; bottom:50px; left:50px"> <%= link_to 'TOP' , '/'%></p></font></h1>
+ </div>
+
