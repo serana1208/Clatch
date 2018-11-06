@@ -12,11 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :year %>
+    <%= form.label :カレンダーPDF %>
+    <%= form.file_field :filename %>
+    <%= form.label :年度 %>
     <%= form.number_field :year, id: :calendar_year %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :更新%>
   </div>
 <% end %>

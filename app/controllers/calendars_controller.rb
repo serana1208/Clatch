@@ -25,10 +25,15 @@ class CalendarsController < ApplicationController
   # POST /calendars.json
   def create
     @calendar = Calendar.new(calendar_params)
+    if calendar_params[:filename].present?
+      File.open("app/assets/images/pdf/event/#{@calendar.year}"+".pdf","w+b"){
+        |f| f.write(calendar_params[:filename].read)
+      }
+    end
 
     respond_to do |format|
       if @calendar.save
-        format.html { redirect_to @calendar, notice: 'Calendar was successfully created.' }
+        format.html { redirect_to @calendar, notice: '成功しました！' }
         format.json { render :show, status: :created, location: @calendar }
       else
         format.html { render :new }
@@ -69,6 +74,6 @@ class CalendarsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def calendar_params
-      params.require(:calendar).permit(:year)
+      params.require(:calendar).permit(:year, :filename)
     end
 end
