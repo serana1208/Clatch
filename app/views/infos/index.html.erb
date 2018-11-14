@@ -15,11 +15,14 @@
     </tr>
   </thead>
 
+  
   <tbody>
     <% @infos.each do |info| %>
       <tr>
-        <td width="8%"><img src="<%= asset_path 'info/new.png'%>"width="100%">
-          
+        <td width="8%">
+          <% if Isnew(info.created_at, 4) %>
+            <img src="<%= asset_path 'info/new.png'%>"width="100%">
+          <% end %>
         </td>                    
         <td width="15%"><%= link_to info.title, info %></td>
         <td width="15%"><%= info.limit %></td>

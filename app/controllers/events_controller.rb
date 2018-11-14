@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   layout 'kokuban'
 
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :user_logged_in?, except: :top
+  before_action :user_logged_in?, except: :index
 
   def top
     logout

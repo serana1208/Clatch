@@ -9,12 +9,33 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20181030012326) do
+
+ActiveRecord::Schema.define(version: 20181113005808) do
+
+  create_table "Infos", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.date "limit"
+    t.string "filename"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "classroom_id"
+    t.integer "room_id"
+  end
+
   create_table "calendars", force: :cascade do |t|
     t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "filename"
+  end
+
+  create_table "crooms", force: :cascade do |t|
+    t.integer "grade"
+    t.integer "room"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -24,11 +45,10 @@ ActiveRecord::Schema.define(version: 20181030012326) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "infos", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.date "limit"
-    t.string "filename"
+  create_table "rooms", force: :cascade do |t|
+    t.integer "grade"
+    t.integer "class"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
