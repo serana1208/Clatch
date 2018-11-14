@@ -1,0 +1,2 @@
+class Croom < ApplicationRecord
+end

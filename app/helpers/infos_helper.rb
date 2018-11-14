@@ -13,7 +13,7 @@ module InfosHelper
     end
 
     def Isnew(create, value)
-        day = (Date.today - created_at).to_i
-        day < 4 && day < true
+        day = (Date.today - create.to_date).to_i
+        day < value
     end    
 end

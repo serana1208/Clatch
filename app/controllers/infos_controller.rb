@@ -1,17 +1,18 @@
 class InfosController < ApplicationController
   before_action :set_info, only: [:show, :edit, :update, :destroy]
+  before_action :user_logged_in?, except: [:index, :show] 
 
-  
   # GET /infos
   # GET /infos.json
   def index
+    logout
     @infos = Info.order("created_at desc")
   end
 
   # GET /infos/1
   # GET /infos/1.json
   def show
-    
+    logout
   end
 
   # GET /infos/new
