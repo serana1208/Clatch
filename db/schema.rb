@@ -12,17 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20181113005808) do
 
-  create_table "Infos", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.date "limit"
-    t.string "filename"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "classroom_id"
-    t.integer "room_id"
-  end
-
   create_table "calendars", force: :cascade do |t|
     t.integer "year"
     t.datetime "created_at", null: false
@@ -45,12 +34,14 @@ ActiveRecord::Schema.define(version: 20181113005808) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.integer "grade"
-    t.integer "class"
-    t.string "name"
+  create_table "infos", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.date "limit"
+    t.string "filename"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "room_id"
   end
 
 end
