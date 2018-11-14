@@ -2,7 +2,13 @@
 
 <h1>年間カレンダー</h1>
 
-<object data="<%= asset_path 'pdf/event/' + @nendo.to_s + '.pdf'%>" type="application/pdf" width="100%" height="700px"></object>
-<br>
+<% if @nendo != 0 %> 
+<object data="<%= asset_path 'pdf/calendar/' + @nendo.to_s + '.pdf'%>" type="application/pdf" width="100%" height="650px"></object>
+<% end %>
 
+
+<br>
+<%= link_to 'TOP画面へ' , '/' %>
+
+<br>
 <%= link_to '登録（教員限定）', new_calendar_path %>

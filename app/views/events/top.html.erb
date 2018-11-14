@@ -1,16 +1,26 @@
 <p id="notice"><%= notice %></p>
-<h1><%= Date.today.mon %>月 <%= Date.today.day%>日の行事は...</h1>
+<h1><font color='white' size="7"><%= Date.today.mon %>月 <%= Date.today.day%>日の行事は...</h1>
+<br>
+<br>
 <li>
 <% @naiyou.each do |naiyou| %>
 <ul>
-    <h3><%= naiyou.content %>があります
+  <font color='yellow' size="6"><%= naiyou.content %>があります
 </ul>
 <%end%>
 <% if @naiyou.length == 0 %>
 <ul>
-    <h3>ありません
+  <font color='yellow' size="6">ありません
 </ul>
 <%end%>
 </li>
 
-<br><%= link_to '行事の追加等（教員限定）', events_path %>
+
+<br>
+<br>
+<br>
+<br>
+<font color='white' size="5"><%= link_to 'TOP画面へ' , '/' , :style=>"color:white;" %>
+<br>
+<font color='white' size="5"><%= link_to '行事の追加等（教員限定）', events_path , :style=>"color:white;" %>
+
