@@ -1,13 +1,18 @@
 class CalendarsController < ApplicationController
   before_action :set_calendar, only: [:show, :edit, :update, :destroy]
+  before_action :user_logged_in?, except: :index
+
 
   # GET /calendars
   # GET /calendars.json
   def index
-    @calendars = Calendar.all #find_byで年度でさがしてないときは空にする
+    logout
     @nendo = Date.today.year
     if Date.today.month < 4
       @nendo = @nendo - 1
+    end
+    if Calendar.find_by(year: @nendo) == nil
+      @nendo = 0
     end
   end
 
@@ -29,12 +34,16 @@ class CalendarsController < ApplicationController
   # POST /calendars
   # POST /calendars.json
   def create
-    @calendar = Calendar.new(calendar_params)
-    if calendar_params[:filename].present?
-      File.open("app/assets/images/pdf/event/#{@calendar.year}"+".pdf","w+b"){
-        |f| f.write(calendar_params[:filename].read)
-      }
+    @calendar = Calendar.find_by(year: calendar_params[:nendo].to_i)
+    if @calendar == nil
+      @calendar = Calendar.new(calendar_params)
+      @calendar.filename = @calendar.year.to_s + ".pdf"
     end
+    File.open("app/assets/images/pdf/calendar/#{@calendar.year}"+".pdf","w+b"){
+      |f| f.write(calendar_params[:filename].read)
+    } 
+
+
 
     respond_to do |format|
       if @calendar.save
