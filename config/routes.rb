@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'talks/index'
+  post 'talks/update', to: 'talks#update', as: 'talk_update'
+
   resources :calendars
   get 'sessions/new'
 
