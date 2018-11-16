@@ -37,21 +37,30 @@ class CalendarsController < ApplicationController
     @calendar = Calendar.find_by(year: calendar_params[:nendo].to_i)
     if @calendar == nil
       @calendar = Calendar.new(calendar_params)
-      @calendar.filename = @calendar.year.to_s + ".pdf"
     end
-    File.open("app/assets/images/pdf/calendar/#{@calendar.year}"+".pdf","w+b"){
-      |f| f.write(calendar_params[:filename].read)
-    } 
+    @calendar.filename = calendar_params[:filename]
+    if !calendar_params[:filename].present?
+      @calendar.errors[:base] << 'ファイル名を入力してください'
+      render 'new'
+    elsif calendar_params[:filename].content_type != "application/pdf"
+      @calendar.errors[:base] << 'PDF以外のファイルはアップロードできません'
+      render 'new'
+    else
+      File.open("app/assets/images/pdf/calendar/#{@calendar.year}"+".pdf","w+b"){
+        |f| f.write(calendar_params[:filename].read)
+      } 
+      @calendar.filename = @calendar.year.to_s + ".pdf" 
 
 
 
-    respond_to do |format|
-      if @calendar.save
-        format.html { redirect_to @calendar, notice: '成功しました！' }
-        format.json { render :show, status: :created, location: @calendar }
-      else
-        format.html { render :new }
-        format.json { render json: @calendar.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @calendar.save
+          format.html { redirect_to @calendar, notice: '成功しました！' }
+          format.json { render :show, status: :created, location: @calendar }
+        else
+          format.html { render :new }
+          format.json { render json: @calendar.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

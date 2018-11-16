@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
   resources :timetables
+=======
+  get 'talks/index'
+  post 'talks/update', to: 'talks#update', as: 'talk_update'
+
+>>>>>>> 80fff283d64ecb8dcfa8c6ff676487337713647a
   resources :calendars
   get 'sessions/new'
 
