@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181107032133) do
+ActiveRecord::Schema.define(version: 20181113005808) do
 
   create_table "calendars", force: :cascade do |t|
     t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "filename"
+  end
+
+  create_table "crooms", force: :cascade do |t|
+    t.integer "grade"
+    t.integer "room"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -33,6 +41,7 @@ ActiveRecord::Schema.define(version: 20181107032133) do
     t.string "filename"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "room_id"
   end
 
   create_table "talks", force: :cascade do |t|

@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:session][:password] == "123"
+    if params[:session][:password] == "kyoin2525"
       session[:login] = "ok"
       redirect_to session[:referer]
     else

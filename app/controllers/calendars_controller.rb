@@ -1,13 +1,18 @@
 class CalendarsController < ApplicationController
   before_action :set_calendar, only: [:show, :edit, :update, :destroy]
+  before_action :user_logged_in?, except: :index
+
 
   # GET /calendars
   # GET /calendars.json
   def index
-    @calendars = Calendar.all #find_byで年度でさがしてないときは空にする
+    logout
     @nendo = Date.today.year
     if Date.today.month < 4
       @nendo = @nendo - 1
+    end
+    if Calendar.find_by(year: @nendo) == nil
+      @nendo = 0
     end
   end
 
@@ -29,20 +34,33 @@ class CalendarsController < ApplicationController
   # POST /calendars
   # POST /calendars.json
   def create
-    @calendar = Calendar.new(calendar_params)
-    if calendar_params[:filename].present?
-      File.open("app/assets/images/pdf/event/#{@calendar.year}"+".pdf","w+b"){
-        |f| f.write(calendar_params[:filename].read)
-      }
+    @calendar = Calendar.find_by(year: calendar_params[:nendo].to_i)
+    if @calendar == nil
+      @calendar = Calendar.new(calendar_params)
     end
+    @calendar.filename = calendar_params[:filename]
+    if !calendar_params[:filename].present?
+      @calendar.errors[:base] << 'ファイル名を入力してください'
+      render 'new'
+    elsif calendar_params[:filename].content_type != "application/pdf"
+      @calendar.errors[:base] << 'PDF以外のファイルはアップロードできません'
+      render 'new'
+    else
+      File.open("app/assets/images/pdf/calendar/#{@calendar.year}"+".pdf","w+b"){
+        |f| f.write(calendar_params[:filename].read)
+      } 
+      @calendar.filename = @calendar.year.to_s + ".pdf" 
 
-    respond_to do |format|
-      if @calendar.save
-        format.html { redirect_to @calendar, notice: '成功しました！' }
-        format.json { render :show, status: :created, location: @calendar }
-      else
-        format.html { render :new }
-        format.json { render json: @calendar.errors, status: :unprocessable_entity }
+
+
+      respond_to do |format|
+        if @calendar.save
+          format.html { redirect_to @calendar, notice: '成功しました！' }
+          format.json { render :show, status: :created, location: @calendar }
+        else
+          format.html { render :new }
+          format.json { render json: @calendar.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

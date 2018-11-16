@@ -12,12 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :内容 %>
+  <br>
+    <%= form.label :内容 , :style=>"color:white;" %>
     <%= form.text_field :content, id: :event_content %>
   </div>
 
   <div class="field">
-    <%= form.label :行事日付 %>
+    <%= form.label :行事日付 , :style=>"color:white;" %>
     <%= form.date_select :eventday,id: :event_eventday %>
   </div>
 

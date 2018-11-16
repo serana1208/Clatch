@@ -2,13 +2,14 @@
 
 
 
-<h1>行事一覧</h1>
-
+<font color='white' size="7">行事一覧
+<br>
+<br>
 <table border="2">
   <thead>
     <tr>
-      <th>行事</th>
-      <th>日時</th>
+      <th><font color='white' size="4">行事</th>
+      <th><font color='white' size="4">日時</th>
     </tr>
   </thead>
 
@@ -17,9 +18,9 @@
       <tr>
         <td><%= event.content %></td>
         <td><%= event.eventday.strftime("%Y年 %m月 %d日") %></td>
-        <td><%= link_to '詳細', event %></td>
-        <td><%= link_to '編集', edit_event_path(event) %></td>
-        <td><%= link_to '削除', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '詳細', event , :style=>"color:white;" %></td>
+        <td><%= link_to '編集', edit_event_path(event) ,:style=>"color:white;" %></td>
+        <td><%= link_to '削除', event, method: :delete, data: { confirm: '本当に削除しますか?' } ,:style=>"color:white;" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,8 +31,10 @@
 </tfoot>
 
 <br>
+<br>
+<br>
 
-<%= link_to '行事追加', new_event_path %>
+<font color='white' size="4"><%= link_to '行事追加', new_event_path , :style=>"color:yellow;" %>
 
-<br><%= link_to '戻る', events_top_path %>
+<br><font color='white' size="4"><%= link_to '戻る', events_top_path , :style=>"color:white;" %>
 

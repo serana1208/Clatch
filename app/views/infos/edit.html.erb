@@ -3,7 +3,7 @@
 <%= render 'form', info: @info %>
 
 
-<%= link_to '戻る', infos_path %>
 
-<td><%= link_to '削除', info_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+<td><%= link_to '削除', info_path, method: :delete, data: { confirm: '本当にいいですか？' } %></td>
 

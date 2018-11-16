@@ -1,14 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>行事:</strong>
+<font color='white' size="3"><strong>行事:</strong>
   <%= @event.content %>
 </p>
 
 <p>
-  <strong>行事日付:</strong>
+<font color='white' size="3"><strong>行事日付:</strong>
   <%= @event.eventday %>
 </p>
 
-<%= link_to '編集', edit_event_path(@event) %> |
-<%= link_to '戻る', events_path %>
+<br>
+<br>
+<%= link_to '編集', edit_event_path(@event) , :style=>"color:white;" %> 
+<%= link_to '戻る', events_path , :style=>"color:white;" %>
