@@ -44,11 +44,4 @@ ActiveRecord::Schema.define(version: 20181113005808) do
     t.integer "room_id"
   end
 
-  create_table "talks", force: :cascade do |t|
-    t.string "name"
-    t.string "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
