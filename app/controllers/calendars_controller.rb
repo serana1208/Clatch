@@ -2,6 +2,9 @@ class CalendarsController < ApplicationController
   before_action :set_calendar, only: [:show, :edit, :update, :destroy]
   before_action :user_logged_in?, except: :index
 
+  layout 'kokuban'
+
+
 
   # GET /calendars
   # GET /calendars.json
