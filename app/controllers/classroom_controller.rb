@@ -6,6 +6,6 @@ class ClassroomController < ApplicationController
     if @croom == nil
       redirect_to '/'
     end
-    session[:croom_id] = @croom.first.id
+    session[:croom_id] = @croom.id
   end
 end
