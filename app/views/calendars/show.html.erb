@@ -1,9 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>年度:</strong>
-  <%= @calendar.year %>
+  <font size="4" , color="white"><strong>年度:</strong>
+  <%= @calendar.year %></font>
 </p>
 
-<%= link_to '編集', edit_calendar_path(@calendar) %> |
-<%= link_to '戻る', calendars_path %>
+<%= link_to '編集', edit_calendar_path(@calendar), :style=>"color:white;" %> |
+<%= link_to '戻る', calendars_path, :style=>"color:white;" %>
