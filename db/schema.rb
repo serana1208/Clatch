@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181113005808) do
+ActiveRecord::Schema.define(version: 20181120010556) do
 
   create_table "calendars", force: :cascade do |t|
     t.integer "year"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20181113005808) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "croom_id"
   end
 
 end
