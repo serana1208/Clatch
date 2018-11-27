@@ -1,4 +1,6 @@
 class InfosController < ApplicationController
+  layout 'kokuban'
+  
   before_action :set_info, only: [:show, :edit, :update, :destroy]
   before_action :user_logged_in?, except: [:index, :show] 
 
