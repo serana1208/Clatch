@@ -1,6 +1,8 @@
-<h1>Editing Calendar</h1>
+<font size="6" , color="white">編集</font>
+<br>
+<br>
 
 <%= render 'form', calendar: @calendar %>
 
-<%= link_to 'Show', @calendar %> |
-<%= link_to 'Back', calendars_path %>
+<%= link_to '詳細', @calendar, :style=>"color:white;" %> |
+<%= link_to '戻る', calendars_path, :style=>"color:white;" %>
