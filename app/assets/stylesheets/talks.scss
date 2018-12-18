@@ -1,0 +1,56 @@
+// Place all the styles related to the Talks controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.balloon6 {
+    width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+}
+.balloon6 .faceicon {
+    float: left;
+    margin-right: -50px;
+    width: 40px;
+}
+.balloon6 .faceicon {
+    float: right;
+    margin-right: -50px;
+    width: 40px;
+}
+.balloon6 .faceicon img{
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.balloon6 .chatting {
+    width: 100%;
+    text-align: left;
+    margin-right: 4em;
+}
+.balloon6 .rightchatting {
+    width: 100%;
+    text-align: right;
+    margin-right: 4em;
+}
+.says {
+    display: inline-block;
+    position: relative; 
+    margin: 0 0 0 50px;
+    padding: 10px;
+    max-width: 400px;
+    border-radius: 12px;
+    background:#edf1ee;
+}
+
+.mycomment {
+    margin: 10px 0;
+}
+.rsays{
+    display: inline-block;
+    position: relative; 
+    margin: 0 50px 0 0;
+    padding: 8px;
+    max-width: 400px;
+    border-radius: 12px;
+    background: #30e852;
+}

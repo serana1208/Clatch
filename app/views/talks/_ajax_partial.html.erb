@@ -1,0 +1,11 @@
+<% results.each do |talk| %>
+<div class="balloon6">
+ <div class="chatting">
+    <span style="margin-right: 4em;"></span>
+    <font color="#E0FFFF"> <%= talk.name %> </font><br>
+   <div class="says"><%= talk.content%>&nbsp
+    <font color="#666699">   <%= talk.created_at.in_time_zone('Tokyo').strftime('%m月%d日 %H:%M')%><br> </font>
+  </div>
+ </div>
+</div>
+<%end%>
