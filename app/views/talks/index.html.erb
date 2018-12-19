@@ -7,21 +7,27 @@
     <font color="white" size="3">  内容 </font>
     <%= text_field :data, :content, style: "font-size:14pt;" %>
     <%= submit_tag :送信 %>
+ 
 <% } %>
 </div>
 
 <hr>
 <div id="updated_by_ajax"  style="overflow:scroll;height:600px;">
+<% count = 0 %>
 <% @talks.each do |talk| %>
+ <% count = count + 1 %>
+<% if count % 2 == 1 %>
 <div class="balloon6">
  <div class="chatting">
  <font color="#E0FFFF"> <%= talk.name %> </font><br>
   <div class="says"><%= talk.content%>&nbsp
     <font color="#666699"> <%= talk.created_at.in_time_zone('Tokyo').strftime('%m月%d日 %H:%M')%><br></font>
-  </div>
+  </div> 
  </div>
+</div>
 
- <div class="balloon6">
+<% else %>
+<div class="balloon6">
   <div class="rightchatting">
  <font color="#E0FFFF"> <%= talk.name %> </font><br>
    <div class="rsays"><%= talk.content%>&nbsp
@@ -29,8 +35,9 @@
   </p>
    </div>
   </div>
- </div>
 </div> 
+<% end %>
+
 <%end%>
 
 </div> 

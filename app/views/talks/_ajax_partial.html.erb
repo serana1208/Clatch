@@ -1,11 +1,26 @@
+<% count = 0 %>
 <% results.each do |talk| %>
-<div class="balloon6">
- <div class="chatting">
-    <span style="margin-right: 4em;"></span>
-    <font color="#E0FFFF"> <%= talk.name %> </font><br>
-   <div class="says"><%= talk.content%>&nbsp
-    <font color="#666699">   <%= talk.created_at.in_time_zone('Tokyo').strftime('%m月%d日 %H:%M')%><br> </font>
+  <% count = count + 1 %>
+  <% if count % 2 == 1 %>
+  <div class="balloon6">
+   <div class="chatting">
+   <font color="#E0FFFF"> <%= talk.name %> </font><br>
+    <div class="says"><%= talk.content%>&nbsp
+      <font color="#666699"> <%= talk.created_at.in_time_zone('Tokyo').strftime('%m月%d日 %H:%M')%><br></font>
+    </div> 
+   </div>
   </div>
- </div>
-</div>
+  
+  <% else %>
+  <div class="balloon6">
+    <div class="rightchatting">
+   <font color="#E0FFFF"> <%= talk.name %> </font><br>
+     <div class="rsays"><%= talk.content%>&nbsp
+      <font color="#666699"> <%= talk.created_at.in_time_zone('Tokyo').strftime('%m月%d日 %H:%M')%><br></font>
+    </p>
+     </div>
+    </div>
+  </div> 
+  <% end %>
+  
 <%end%>

@@ -8,6 +8,8 @@ $ ->
     $('#updated_by_ajax').html(response)
     $('#data_name').val('')
     $('#data_content').val('')
-    $('#updated_by_ajax').scrollTop($('#updated_by_ajax').scrollHeight - $('#updated_by_ajax').height)
-#var obj = document.getElementById(targaetId)
-#obj.scrollTop = obj.scrollheight;
+    $('#updated_by_ajax').scrollTop($('#updated_by_ajax').get(0).scrollHeight)
+
+$ ->
+ $(window).load ->
+    $('#updated_by_ajax').scrollTop($('#updated_by_ajax').get(0).scrollHeight)
