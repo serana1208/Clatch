@@ -32,16 +32,30 @@ class InfosController < ApplicationController
   
   def create
     @info = Info.new(info_params)
+    @info.filename = info_params[:filename]
+    if !info_params[:filename].present?
+      @info.errors[:base] << 'ファイル名を入力してください'
 
-    respond_to do |format|
-      if @info.save
-        format.html { redirect_to @info, notice: 'Info was successfully created.' }
+      render 'new'
+    elsif info_params[:filename].content_type != "application/image"
+      @info.errors[:base] << 'png以外のファイルはアップロードできません'
+      render 'new'
+    else  
+     filename = Date.today.to_time.strftime("%Y%m%d%s%f") + ".png"
+     File.open("app/assets/images/info/" + filename,"w+b"){
+        |f| f.write(info_params[:filename].read)
+      } 
+      @info.filename = filename 
+      respond_to do |format|
+       if @info.save
+        format.html { redirect_to @info, notice: '成功しました。' }
         format.json { render :show, status: :created, location: @info }
-      else
+       else
         format.html { render :new }
         format.json { render json: @info.errors, status: :unprocessable_entity }
-      end
-    end
+       end
+      end    
+    end 
   end
 
   # PATCH/PUT /infos/1
