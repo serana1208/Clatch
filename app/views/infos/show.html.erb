@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
-
+<font color='white' size="5">確認画面</font>
 <p>
-  <strong>タイトル:</strong>
+<br>
+<font color="white"><strong>タイトル:</strong>
   <%= @info.title %>
 </p>
 
@@ -12,7 +13,7 @@
 
 <p>
   <strong>締め切り:</strong>
-  <%= @info.limit %>
+  <%= @info.limit.strftime("%Y年%m月%d日")%>
 </p>
 
 <p>
@@ -31,6 +32,9 @@
   <%= @info.filename %>
 </p>
 
+</font>
 
-<%= link_to '戻る', infos_path %>
-<%= link_to '編集画面へ', edit_info_path(@info) %> 
+<br>
+<font size="3"><%= link_to '戻る', infos_path, :style=>"color:white;" %> %>
+<br>
+<font size="3"><%= link_to '編集画面へ', edit_info_path(@info), :style=>"color:white;" %> %> 

@@ -1,34 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<h1><font color="white">インフォメーション</font></h1>
-
-<font color="black"><table border="2"></font>
-  
+<font color="white" size="6">インフォメーション</font>
+<div style="width: 100%; height:620px; overflow:auto;">   
+ <table style= "border-spacing: 0;"  width="60%">
+ <br>
   <thead>
     <tr>
-      <th></th>
-      <th><font color="white">タイトル</font></th>
-      <th><font color="white">締め切り</font></th>
-      <th><font color="white">締め切りまでの残りの日にち</font></th>
+      <th style="border-top:none; border-left:none; border-bottom:none;"></th>
+      <th style="border: 1px solid white"><font color="white">タイトル</font></th>
+      <th style="border: 1px solid white"><font color="white">締め切り</font></th>
+      <th style="border: 1px solid white"><font color="white">締め切りまでの残りの日にち</font></th>
       
     </tr>
   </thead>
-      <%= link_to '追加画面へ', new_info_path %><br>
-      <%= link_to 'TOP画面へ' , '/' %></br>
-      
-
   
   <tbody>
     <% @infos.each do |info| %>
       <tr>
-        <td width="8%">
+        <td style="border-top:none; border-left:none; border-bottom:none;" width="11%">  
           <% if Isnew(info.created_at, 4) %>
             <img src="<%= asset_path 'info/new.png'%>"width="100%">
           <% end %>
-        </td>                    
-        <td width="15%"><%= link_to info.title, info %></td>
-        <td width="15%"><%= info.limit %></td>
-        <td>
+        </td> 
+                  
+        <td style="border: 1px solid white" width="25%"><font size"2"><%= link_to info.title, info, :style=>"color:white;" %></td>
+        <td style="border: 1px solid white" width="25%"><center><font color="white" size="2"><%= info.limit.strftime("%Y年%m月%d日") %></font></center></td>
+        <td style="border: 1px solid white">
           <% if IsLimitNear(info.limit, 6) %>
             <font color="red">
           <% end %>
@@ -40,4 +37,9 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+ </table>
+</div>
+<br>
+<font size="3"><%= link_to '追加画面へ', new_info_path, :style=>"color:white;" %>
+<br>
+<font size="3"><%= link_to 'TOP画面へ' , '/', :style=>"color:white;"  %>

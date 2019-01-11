@@ -52,4 +52,11 @@ ActiveRecord::Schema.define(version: 20181120010556) do
     t.integer "croom_id"
   end
 
+  create_table "timetables", force: :cascade do |t|
+    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "filename"
+  end
+
 end
