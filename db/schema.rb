@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181212021558) do
-
-  create_table "Infos", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.date "limit"
-    t.string "filename"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "classroom_id"
-    t.integer "room_id"
-  end
+ActiveRecord::Schema.define(version: 20181120010556) do
 
   create_table "calendars", force: :cascade do |t|
     t.integer "year"
@@ -45,19 +34,22 @@ ActiveRecord::Schema.define(version: 20181212021558) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rooms", force: :cascade do |t|
-    t.integer "grade"
-    t.integer "class"
-    t.string "name"
+  create_table "infos", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.date "limit"
+    t.string "filename"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "room_id"
   end
 
-  create_table "timetables", force: :cascade do |t|
-    t.date "date"
+  create_table "talks", force: :cascade do |t|
+    t.string "name"
+    t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "filename"
+    t.integer "croom_id"
   end
 
 end
