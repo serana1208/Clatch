@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+<font color='white' size="6">確認画面</font>
+<br>
+<br>
+<p>
+  <font size="4" , color="white"><strong>年月日:</strong>
+  <%= @timetable.date.strftime("%Y年%m月%d日") %></font>
+</p>
+
+<br>
+<font size="3"><%= link_to '編集', edit_timetable_path(@timetable), :style=>"color:white;" %><br> 
+<font size="3"><%= link_to '時間割画面に戻る', timetables_path, :style=>"color:white;" %></br>

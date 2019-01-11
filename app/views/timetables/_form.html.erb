@@ -1,0 +1,26 @@
+<%= form_with(model: timetable, local: true) do |form| %>
+  <% if timetable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(timetable.errors.count, "error") %> prohibited this timetable from being saved:</h2>
+
+      <ul>
+      <% timetable.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br>
+  <div class="field">
+  <font color='white' size="4"><%= form.label :時間割PDF %>
+    <%= form.file_field :filename %>
+    <%= form.label :年月日 %>
+    <%= form.date_select :date, id: :timetable_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit :完了 %>
+
+  </div>
+<% end %>
