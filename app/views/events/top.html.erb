@@ -2,14 +2,14 @@
 <h1><font color='white' size="7"><%= Date.today.mon %>月 <%= Date.today.day%>日の行事は...</h1>
 <br>
 <br>
-<li>
+<li style="list-style: none;">
 <% @naiyou.each do |naiyou| %>
-<ul style="list-style: none;">
+<ul>
   <font color='yellow' size="6"><%= naiyou.content %>があります
 </ul>
 <%end%>
 <% if @naiyou.length == 0 %>
-<ul style="list-style: none;">
+<ul>
   <font color='yellow' size="6">ありません
 </ul>
 <%end%>
