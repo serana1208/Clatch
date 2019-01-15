@@ -34,9 +34,6 @@ class InfosController < ApplicationController
     @info = Info.new(info_params)
     @info.filename = info_params[:filename]
     if !info_params[:filename].present?
-      @info.errors[:base] << 'ファイル名を入力してください'
-
-      render 'new'
     elsif info_params[:filename].content_type != "application/image"
       @info.errors[:base] << 'png以外のファイルはアップロードできません'
       render 'new'
