@@ -4,12 +4,12 @@
 <br>
 <li>
 <% @naiyou.each do |naiyou| %>
-<ul style="list-style-type: none;">
+<ul style="list-style: none;">
   <font color='yellow' size="6"><%= naiyou.content %>があります
 </ul>
 <%end%>
 <% if @naiyou.length == 0 %>
-<ul style="list-style-type: none;">
+<ul style="list-style: none;">
   <font color='yellow' size="6">ありません
 </ul>
 <%end%>
