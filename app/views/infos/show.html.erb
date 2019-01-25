@@ -4,20 +4,23 @@
 <br>
 <font color="white"><strong>タイトル:</strong>
   <%= @info.title %>
+  </font>
 </p>
-
+<font color="white">
 <p>
-  <strong>内容:</strong>
+<strong>内容:</strong>
   <%= @info.content %>
 </p>
-
+</font>
+<font color="white">
 <p>
-  <strong>締め切り:</strong>
+<strong>締め切り:</strong>
   <%= @info.limit.strftime("%Y年%m月%d日")%>
 </p>
-
+</font>
+<font color="white">
 <p>
-  <strong>締め切りまでの残りの日数:</strong>
+<strong>締め切りまでの残りの日数:</strong>
   <%
    @sa = (@info.limit - Date.today ).to_i 
   %>
@@ -25,16 +28,22 @@
     <%= @sa %> 
   <% end%>
 </p>
-
-
-<p>
-  <strong>画像:</strong>
-  <%= @info.filename %>
-</p>
-
 </font>
 
+<font color="white">
+<p>
+<strong>画像:</strong>
+  <% if @info.filename.present?%>
+    <% if File.exists?('app/assets/images/info/' + @info.filename) %>
+      <img src="<%= asset_path 'info/' + @info.filename %>" width="40%">
+    <% end %>
+  <% end %>
+</p>
+</font>
+
+
+
 <br>
-<font size="3"><%= link_to '戻る', infos_path, :style=>"color:white;" %> %>
+<font size="3"><%= link_to '戻る', infos_path, :style=>"color:white;" %> </font>
 <br>
-<font size="3"><%= link_to '編集画面へ', edit_info_path(@info), :style=>"color:white;" %> %> 
+<font size="3"><%= link_to '編集画面へ', edit_info_path(@info), :style=>"color:white;" %> </font>

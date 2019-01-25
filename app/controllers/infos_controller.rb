@@ -8,7 +8,14 @@ class InfosController < ApplicationController
   # GET /infos.json
   def index
     logout
-    @infos = Info.order("created_at desc")
+    if !session[:croom_id]
+        redirect_to '/'
+    else
+      @croom = Croom.find(session[:croom_id])
+      @nen = @croom.grade
+      @room = @croom.room
+      @infos = Info.where(room_id: session[:croom_id]).order("created_at desc")
+    end
   end
 
   # GET /infos/1
@@ -31,14 +38,31 @@ class InfosController < ApplicationController
 
   
   def create
+    filename = ""
+    if info_params[:filename].present?
+      ext = File.extname(info_params[:filename].original_filename) 
+      filename = Date.today.to_time.strftime("%Y%m%d%s%F") + ext
+    end
     @info = Info.new(info_params)
-    @info.filename = info_params[:filename]
+    @info.filename = filename
+    @info.room_id = session[:croom_id]
     if !info_params[:filename].present?
-    elsif info_params[:filename].content_type != "application/image"
-      @info.errors[:base] << 'png以外のファイルはアップロードできません'
+      respond_to do |format|
+        if @info.save
+         format.html { redirect_to @info, notice: '成功しました。' }
+         format.json { render :show, status: :created, location: @info }
+        else
+         format.html { render :new }
+         format.json { render json: @info.errors, status: :unprocessable_entity }
+        end
+      end  
+    elsif info_params[:filename].content_type != "image/jpeg" &&
+          info_params[:filename].content_type != "image/png" &&
+          info_params[:filename].content_type != "image/gif"
+      logger.debug info_params[:filename].content_type
+      @info.errors[:base] << 'jpg,png,gif以外のファイルはアップロードできません'
       render 'new'
-    else  
-     filename = Date.today.to_time.strftime("%Y%m%d%s%f") + ".png"
+    else   
      File.open("app/assets/images/info/" + filename,"w+b"){
         |f| f.write(info_params[:filename].read)
       } 
@@ -60,7 +84,7 @@ class InfosController < ApplicationController
   def update
     respond_to do |format|
       if @info.update(info_params)
-        format.html { redirect_to @info, notice: 'Info was successfully updated.' }
+        format.html { redirect_to @info, notice: '成功しました。' }
         format.json { render :show, status: :ok, location: @info }
       else
         format.html { render :edit }
@@ -74,7 +98,7 @@ class InfosController < ApplicationController
   def destroy
     @info.destroy
     respond_to do |format|
-      format.html { redirect_to infos_url, notice: 'Info was successfully destroyed.' }
+      format.html { redirect_to infos_url, notice: '削除しました。' }
       format.json { head :no_content }
     end
   end
