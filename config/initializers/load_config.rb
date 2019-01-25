@@ -1,0 +1,1 @@
+DISP_DAY_COUNT = 14
