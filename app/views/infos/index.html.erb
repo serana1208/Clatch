@@ -25,14 +25,15 @@
                   
         <td style="border: 1px solid white" width="25%"><font size"2"><%= link_to info.title, info, :style=>"color:white;" %></td>
         <td style="border: 1px solid white" width="25%"><center><font color="white" size="2"><%= info.limit.strftime("%Y年%m月%d日") %></font></center></td>
-        <td style="border: 1px solid white">
+        <td style="border: 1px solid white"><font color ="white">
           <% if IsLimitNear(info.limit, 6) %>
             <font color="red">
           <% end %>
           <%= GetRemainDays(info.limit) %>
           <% if IsLimitNear(info.limit, 6) %>
-            </font>
+            </font>  
           <% end %>
+          </font>
         </td>        
       </tr>
     <% end %>
@@ -42,4 +43,4 @@
 <br>
 <font size="3"><%= link_to '追加画面へ', new_info_path, :style=>"color:white;" %>
 <br>
-<font size="3"><%= link_to 'TOP画面へ' , '/', :style=>"color:white;"  %>
+<%= link_to 'クラス画面のページに戻る' ,'classroom/top/' + @nen.to_s + '/' + @room.to_s, :style=>"color:white;" %>

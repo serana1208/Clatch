@@ -67,7 +67,7 @@ class TimetablesController < ApplicationController
   def update
     respond_to do |format|
       if @timetable.update(timetable_params)
-        format.html { redirect_to @timetable, notice: 'Timetable was successfully updated.' }
+        format.html { redirect_to @timetable, notice: 'アップデートできました！' }
         format.json { render :show, status: :ok, location: @timetable }
       else
         format.html { render :edit }
