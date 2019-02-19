@@ -30,16 +30,16 @@
 </p>
 </font>
 
-<font color="white">
 <p>
-<strong>画像:</strong>
+<font color="white"><strong>画像:</strong></font>
+<div style="width: 100%; height:320px; overflow:auto;">
   <% if @info.filename.present?%>
     <% if File.exists?('app/assets/images/info/' + @info.filename) %>
       <img src="<%= asset_path 'info/' + @info.filename %>" width="40%">
     <% end %>
   <% end %>
 </p>
-</font>
+</div>
 
 
 

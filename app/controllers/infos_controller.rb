@@ -82,16 +82,46 @@ class InfosController < ApplicationController
   # PATCH/PUT /infos/1
   # PATCH/PUT /infos/1.json
   def update
-    respond_to do |format|
-      if @info.update(info_params)
+     filename = ""
+     if info_params[:filename].present?
+       ext = File.extname(info_params[:filename].original_filename) 
+       filename = Date.today.to_time.strftime("%Y%m%d%s%F") + ext
+     end    
+     @info = Info.new(info_params)
+     @info.filename = filename
+     @info.room_id = session[:croom_id] 
+     if !info_params[:filename].present?       
+       respond_to do |format|
+        if @info.update(info_params)
+           format.html { redirect_to @info, notice: '成功しました。' }
+           format.json { render :show, status: :ok, location: @info }
+         else
+           format.html { render :edit }
+           format.json { render json: @info.errors, status: :unprocessable_entity }
+         end
+       end
+     elsif info_params[:filename].content_type != "image/jpeg" &&
+           info_params[:filename].content_type != "image/png" &&
+           info_params[:filename].content_type != "image/gif"
+       logger.debug info_params[:filename].content_type
+       @info.errors[:base] << 'jpg,png,gif以外のファイルはアップロードできません'
+       render 'new'
+     else   
+      File.open("app/assets/images/info/" + filename,"w+b"){
+         |f| f.write(info_params[:filename].read)
+      } 
+      @info.filename = filename 
+      respond_to do |format|
+       if @info.save
         format.html { redirect_to @info, notice: '成功しました。' }
-        format.json { render :show, status: :ok, location: @info }
-      else
-        format.html { render :edit }
+        format.json { render :show, status: :created, location: @info }
+       else
+        format.html { render :new }
         format.json { render json: @info.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+       end
+      end    
+    end 
+  end    
 
   # DELETE /infos/1
   # DELETE /infos/1.json
